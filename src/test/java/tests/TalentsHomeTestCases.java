@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import pages.LoginPage_PMU;
 import pages.TalentsPage;
 
+import java.awt.*;
 import java.util.concurrent.TimeUnit;
 
 public class TalentsHomeTestCases
@@ -22,7 +23,7 @@ public class TalentsHomeTestCases
         driver = new ChromeDriver();
 
         driver.get("http://ec2-52-53-181-39.us-west-1.compute.amazonaws.com/sign-in.html");
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
 
         LoginPage_PMU login = new LoginPage_PMU(driver);
         login.typeEmail();
@@ -35,16 +36,17 @@ public class TalentsHomeTestCases
         @AfterClass
         public void cleaningUp () throws InterruptedException
         {
-            Thread.sleep(5000);
-            driver.close();
+            Thread.sleep(4000);
+           // driver.close();
         }
 
         @Test
-        public void talentsHome () throws InterruptedException
-        {
+        public void talentsHome () throws InterruptedException, AWTException {
             TalentsPage testTalents = new TalentsPage(driver);
-            testTalents.verifyTitle();
-            testTalents.getToHomePageFromMyProfile();
+            //testTalents.verifyTitle();
+            //testTalents.getToHomePageFromMyProfile();
+            testTalents.createNewTalent();
+            //testTalents.editTalent();
 
         }
 
